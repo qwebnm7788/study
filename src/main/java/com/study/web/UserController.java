@@ -10,20 +10,21 @@ import com.study.domain.User;
 import com.study.persistence.UserRepository;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String create(User user) {
 		System.out.println(user);
 		userRepository.save(user);
-		return "redirect:/list";
+		return "redirect:/users";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
 		model.addAttribute("users", userRepository.findAll());
-		return "list";
+		return "/user/list";
 	}
 }
