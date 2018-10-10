@@ -57,6 +57,12 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form() {
 		return "/user/form";
